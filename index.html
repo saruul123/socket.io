@@ -24,14 +24,16 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        var socket = io();
+        var socket = io('/admin')
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('input');
+
+        const room = 'executive'
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (input.value) {
-            socket.emit('chat message', input.value);
+            socket.emit('chat message', { msg: input.value, room });
             input.value = '';
             }
         });
@@ -41,6 +43,11 @@
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
         });
+
+        socket.on('connect', () =>
+        {
+            socket.emit('join', { room })
+        })
     </script>
 
 </html>
