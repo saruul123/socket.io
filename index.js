@@ -36,8 +36,13 @@ adminNameSpace.on('connect', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
+
     socket.on('chat message', (data) => {
         adminNameSpace.in(data.room).emit('chat message', data.msg);
+    });
+
+    socket.on('send msg to all', (data) => {
+        adminNameSpace.emit('chat message', data.msg);
     });
 });
 

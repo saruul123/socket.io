@@ -16,6 +16,7 @@
         </style>
     </head>
     <body>
+        <button onclick="sendMSGToAll()">Бүх өрөө лүү илгээх</button>
         <ul id="messages"></ul>
         <form id="form" action="">
         <input id="input" autocomplete="off" /><button>Send</button>
@@ -48,6 +49,11 @@
         {
             socket.emit('join', { room })
         })
+
+        function sendMSGToAll()
+        {
+            socket.emit('send msg to all', { msg: input.value, room });
+        }
     </script>
 
 </html>
