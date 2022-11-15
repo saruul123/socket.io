@@ -9,6 +9,19 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/rooms', (req, res) => {
+    res.sendFile(__dirname + '/rooms.html');
+});
+
+app.get('/executive', (req, res) => {
+    res.sendFile(__dirname + '/executive.html');
+});
+
+app.get('/engineer', (req, res) => {
+    res.sendFile(__dirname + '/engineer.html');
+});
+
+
 const adminNameSpace = io.of('/admin')
 
 adminNameSpace.on('connect', (socket) => {
